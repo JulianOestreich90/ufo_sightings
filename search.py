@@ -24,7 +24,7 @@ class UfoSchema(SchemaClass):
 def create_index():
     # check if directory exits
     if not os.path.exists('index'):
-        os.mkdir('index')
+        os.mkdir('./index')
 
     ix = create_in("index", UfoSchema)
     writer = ix.writer()

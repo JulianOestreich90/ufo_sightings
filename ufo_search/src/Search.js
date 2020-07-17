@@ -47,18 +47,23 @@ class SearchData extends React.Component {
                         onChange={this.handleInputChange}
                     />
                 </form>
-                <div>{this.state.data.totalSightings > 0 ? this.state.data.sightings.map(i => <table style={{width: "100%"}}>
-                    <tr>
-                        <th>Date</th>
-                        <th>City</th>
-                        <th>Comments</th>
-                    </tr>
-                    <tr>
-                        <td>{i.date}</td>
-                        <td>{i.city}</td>
-                        <td>{i.comments}</td>
-                    </tr>
-                </table>) : "no results"}</div>
+                <div>{this.state.data.totalSightings > 0 ?
+                    <table style={{width: "100%"}}>
+                        <tr>
+                            <th>Date</th>
+                            <th>City</th>
+                            <th>Comments</th>
+                        </tr>
+                        {this.state.data.sightings.map(i => {
+                            return (
+                                <tr>
+                                    <td>{i.date}</td>
+                                    <td>{i.city}</td>
+                                    <td>{i.comments}</td>
+                                </tr>
+                            )
+                        })}
+                    </table> : "no results"}</div>
             </div>
         )
     }
