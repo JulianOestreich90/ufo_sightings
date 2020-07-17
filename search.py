@@ -64,20 +64,19 @@ def query_index(q, offset, limit):
     with ix.searcher() as searcher:
         mp = qparser.MultifieldParser(
             ['dt', 'city', 'state', 'country', 'shape', 'comments'], ix.schema)
-    mpq = mp.parse(q)
-    results = searcher.search_page(mpq, pagenum=offset + 1, pagelen=limit)
+        mpq = mp.parse(q)
+        results = searcher.search_page(mpq, pagenum=offset + 1, pagelen=limit)
 
-    for result in results:
-        pprint(result)
+        for result in results:
+            pprint(result)
 
-        sightings.append({
-            'date': result['dt'].strftime('%d/%m/%Y %H:%M'),
-            'city': result['city'],
-            'country': result['country'],
-            'comments': result['comments'],
-            'duration_sec': result['duration_sec'],
-            'latitude': result['latitude'],
-            'longitude': result['longitude']
-        })
-
+            sightings.append({
+                'date': result['dt'].strftime('%d/%m/%Y %H:%M'),
+                'city': result['city'],
+                'country': result['country'],
+                'comments': result['comments'],
+                'duration_sec': result['duration_sec'],
+                'latitude': result['latitude'],
+                'longitude': result['longitude']
+            })
     return (sightings, len(results))
