@@ -4,6 +4,7 @@ from pprint import pprint
 from whoosh.index import create_in, open_dir
 from whoosh.fields import *
 from whoosh import qparser
+from whoosh.analysis import NgramAnalyzer
 import datetime
 
 
@@ -15,7 +16,7 @@ class UfoSchema(SchemaClass):
     shape = TEXT(stored=True)
     duration_sec = NUMERIC(stored=True)
     duration_hr = TEXT(stored=True)
-    comments = TEXT(stored=True)
+    comments = NGRAMWORDS(stored=True)
     date_posted = TEXT(stored=True)
     latitude = NUMERIC(stored=True)
     longitude = NUMERIC(stored=True)
