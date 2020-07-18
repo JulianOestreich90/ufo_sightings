@@ -15,16 +15,17 @@ class SearchData extends React.Component {
         const query = this.props.query;
         const data = this.props.data;
         return (
-            <div className="searchForm">
+            <div className="searchForm split left">
                 <form>
                     <input
+                        className={"form-control"}
                         placeholder="Search for..."
                         value={query}
                         onChange={this.handleChange}
                     />
                 </form>
                 <div>{data.totalSightings > 0 ?
-                    <table style={{width: "100%"}}>
+                    <table className={"table"} style={{width: "100%"}}>
                         <tr>
                             <th>Date</th>
                             <th>City</th>

@@ -2,6 +2,7 @@ import React from 'react';
 import SearchData from "./Search";
 import axios from "axios";
 import UfoMap from "./map";
+import './styles.css'
 
 class App extends React.Component {
     constructor(props) {
@@ -42,7 +43,10 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <SearchData handleInputChange={this.handleInputChange} query={this.state.query} data={this.state.data}/>
+                <SearchData
+                    handleInputChange={this.handleInputChange}
+                    query={this.state.query}
+                    data={this.state.data}/>
                 <UfoMap data={this.state.data}/>
             </div>
         )
