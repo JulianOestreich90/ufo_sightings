@@ -21,7 +21,6 @@ def index_sightings():
 
 @app.after_request
 def middleware_for_response(response):
-    # Allowing the credentials in the response.
     response.headers.add('Access-Control-Allow-Origin', request.headers.get("origin"))
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,PATCH,HEAD,DELETE,UPDATE,OPTIONS')
     return response
