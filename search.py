@@ -16,7 +16,7 @@ class UfoSchema(SchemaClass):
     shape = TEXT(stored=True)
     duration_sec = NUMERIC(stored=True)
     duration_hr = TEXT(stored=True)
-    comments = NGRAMWORDS(stored=True)
+    comments = NGRAM(stored=True)
     date_posted = TEXT(stored=True)
     latitude = NUMERIC(stored=True)
     longitude = NUMERIC(stored=True)
@@ -67,14 +67,16 @@ def query_index(q, offset, limit):
             ['dt', 'city', 'state', 'country', 'shape', 'comments'], ix.schema)
         mpq = mp.parse(q)
         results = searcher.search_page(mpq, pagenum=offset + 1, pagelen=limit)
-
+        identifier = 0
         for result in results:
             pprint(result)
-            type(result)
+            identifier = identifier + 1
             if 'latitude' in result and 'longitude' in result.keys():
                 sightings.append({
+                    'id' : identifier,
                     'date': result['dt'].strftime('%d/%m/%Y %H:%M'),
                     'city': result['city'],
+                    'shape': result['shape'],
                     'country': result['country'],
                     'comments': result['comments'],
                     'duration_sec': result['duration_sec'],
@@ -83,8 +85,10 @@ def query_index(q, offset, limit):
                 })
             else:
                 sightings.append({
+                    'id': identifier,
                     'date': result['dt'].strftime('%d/%m/%Y %H:%M'),
                     'city': result['city'],
+                    'shape': result['shape'],
                     'country': result['country'],
                     'comments': result['comments'],
                     'duration_sec': result['duration_sec']
