@@ -51,8 +51,8 @@ def create_index():
                     duration_hr=row[6],
                     comments=row[7],
                     date_posted=row[8],
-                    latitude=float(row[9]) if row[9] != '' else None,
-                    longitude=float(row[10] if row[10] != '' else None)
+                    latitude=float(row[9]) if row[9] not in ['', '0'] else None,
+                    longitude=float(row[10]) if row[10] not in ['', '0'] else None
                 )
 
         writer.commit()
@@ -70,14 +70,23 @@ def query_index(q, offset, limit):
 
         for result in results:
             pprint(result)
-
-            sightings.append({
-                'date': result['dt'].strftime('%d/%m/%Y %H:%M'),
-                'city': result['city'],
-                'country': result['country'],
-                'comments': result['comments'],
-                'duration_sec': result['duration_sec'],
-                'latitude': result['latitude'],
-                'longitude': result['longitude']
-            })
-    return (sightings, len(results))
+            type(result)
+            if 'latitude' in result and 'longitude' in result.keys():
+                sightings.append({
+                    'date': result['dt'].strftime('%d/%m/%Y %H:%M'),
+                    'city': result['city'],
+                    'country': result['country'],
+                    'comments': result['comments'],
+                    'duration_sec': result['duration_sec'],
+                    'latitude': result['latitude'],
+                    'longitude': result['longitude']
+                })
+            else:
+                sightings.append({
+                    'date': result['dt'].strftime('%d/%m/%Y %H:%M'),
+                    'city': result['city'],
+                    'country': result['country'],
+                    'comments': result['comments'],
+                    'duration_sec': result['duration_sec']
+                })
+    return sightings, len(results)

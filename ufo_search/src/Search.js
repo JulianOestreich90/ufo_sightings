@@ -1,60 +1,36 @@
 import React from 'react';
-import axios from 'axios';
+
 
 class SearchData extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            query: '',
-            data: []
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(e) {
+            this.props.handleInputChange(e.target.value);
         }
-    }
-
-    searchData = (query, offset = 0, limit = 20) => {
-
-        axios.get('http://127.0.0.1:5000/api/v1/ufo/search', {
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "*/*"
-            },
-            params: {
-                q: query,
-                offset: offset,
-                limit: limit
-            }
-        })
-            .then((res) => {
-                this.setState({data: res.data});
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
-
-    handleInputChange = event => {
-        const query = event.target.value;
-        this.setState({query: query})
-        this.searchData(query);
-    }
 
     render() {
+        const query = this.props.query;
+        const data = this.props.data;
         return (
             <div className="searchForm">
                 <form>
                     <input
                         placeholder="Search for..."
-                        value={this.state.query}
-                        onChange={this.handleInputChange}
+                        value={query}
+                        onChange={this.handleChange}
                     />
                 </form>
-                <div>{this.state.data.totalSightings > 0 ?
+                <div>{data.totalSightings > 0 ?
                     <table style={{width: "100%"}}>
                         <tr>
                             <th>Date</th>
                             <th>City</th>
                             <th>Comments</th>
                         </tr>
-                        {this.state.data.sightings.map(i => {
+                        {data.sightings.map(i => {
                             return (
                                 <tr>
                                     <td>{i.date}</td>
