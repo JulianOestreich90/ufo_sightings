@@ -9,12 +9,14 @@ class App extends React.Component {
         super(props);
         this.state = {
             query: '',
-            data: []
+            data: [],
+            openPopup: 0
         }
-        this.handleInputChange = this.handleInputChange.bind(this)
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.openPopup = this.openPopup.bind(this);
     };
 
-    searchData = (query, offset = 0, limit = 20) => {
+    searchData = (query, offset = 0, limit = 100) => {
 
         axios.get('http://127.0.0.1:5000/api/v1/ufo/search', {
             headers: {
@@ -40,14 +42,20 @@ class App extends React.Component {
         this.searchData(value);
     }
 
+    openPopup = data => {
+        this.setState({openPopup: data.id})
+    }
+
     render() {
         return (
             <div className="App">
                 <SearchData
-                    handleInputChange={this.handleInputChange}
                     query={this.state.query}
-                    data={this.state.data}/>
-                <UfoMap data={this.state.data}/>
+                    data={this.state.data}
+                    handleInputChange={this.handleInputChange}
+                    openPopup={this.openPopup}
+                />
+                <UfoMap data={this.state.data} openPopupID={this.state.openPopup}/>
             </div>
         )
     }

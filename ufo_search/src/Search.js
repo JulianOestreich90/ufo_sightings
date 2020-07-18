@@ -1,15 +1,21 @@
 import React from 'react';
+import {RowComponent} from "./RowComponent";
 
 
 class SearchData extends React.Component {
     constructor(props) {
         super(props);
         this.handleChange = this.handleChange.bind(this);
+        this.fetchSightingDetails = this.fetchSightingDetails.bind(this);
     }
 
     handleChange(e) {
-            this.props.handleInputChange(e.target.value);
-        }
+        this.props.handleInputChange(e.target.value);
+    }
+
+    fetchSightingDetails = (data) => {
+        this.props.openPopup(data);
+    }
 
     render() {
         const query = this.props.query;
@@ -25,21 +31,25 @@ class SearchData extends React.Component {
                     />
                 </form>
                 <div>{data.totalSightings > 0 ?
-                    <table className={"table"} style={{width: "100%"}}>
+                    <table className={"table table-hover"}>
+                        <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>City</th>
-                            <th>Comments</th>
+                            <th scope={"col"}>Date</th>
+                            <th scope={"col"}>City</th>
+                            <th scope={"col"}>Country</th>
                         </tr>
-                        {data.sightings.map(i => {
+                        </thead>
+                        <tbody>
+                        {data.sightings.map((sighting, index) => {
                             return (
-                                <tr>
-                                    <td>{i.date}</td>
-                                    <td>{i.city}</td>
-                                    <td>{i.comments}</td>
-                                </tr>
+                                <RowComponent
+                                    key={index}
+                                    data={sighting}
+                                    onClick={this.fetchSightingDetails}
+                                    />
                             )
                         })}
+                        </tbody>
                     </table> : "no results"}</div>
             </div>
         )

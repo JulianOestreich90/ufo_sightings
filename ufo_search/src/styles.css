@@ -23,3 +23,7 @@
 .right {
   right: 0;
 }
+
+.table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: #e0e0e0e0;
+}
