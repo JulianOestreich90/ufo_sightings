@@ -16,6 +16,11 @@ The results are rendered in a React.js Frontend with the help of [react-leaflet]
 *This explanation assumes that you're using a unix system.*
 
 1. Clone the repository
+1. Install the frontend:
+    - Open another shell
+    - `cd <cloned-folder>/ufo_search`
+    - `npm install`
+    - `npm run build`
 1. Run the backend:
     - Open a Terminal
     - `cd <cloned-folder>`
@@ -24,25 +29,14 @@ The results are rendered in a React.js Frontend with the help of [react-leaflet]
     - `pip install -r requirements.txt`
     - `python app.py`
 
-1. Run the frontend:
-    - Open another shell
-    - `cd <cloned-folder>/ufo_search`
-    - `npm install`
-    - `npm start`
-
 1. Index the data by requesting http://localhost:5000/api/v1/ufo/index
  
     **This will take some time, because of the slow Python Backend!!**
     
-1. Open a browser on http://localhost:3000
+1. Open a browser on http://localhost:5000
 
 
 ## Todos
 * Geotag non-us sighting data (!!)
 * Use a faster library for building the search engine
 * make everything prettier and faster 
-
-
-
-
-
