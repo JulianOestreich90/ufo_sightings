@@ -1,8 +1,8 @@
 # Search Engine for UFO Sightings
 
-*This investigation on UFO Sighting data is purely descriptive. For interesting theories on extra-terrestrials and Aliens i would rather suggest reading some Sci-Fi Books for example from Stanislav Lem, than watching Ancient Aliens on Netflix.*
+*This investigation on UFO Sighting data is purely descriptive. For interesting information on extra-terrestrials and Aliens i would rather suggest Rick & Morty, than watching Ancient Aliens on Netflix.*
 
-This Search Engine for a [UFO Sightings Dataset](https://www.kaggle.com/NUFORC/ufo-sightings) is based on [Python Whoosh](https://whoosh.readthedocs.io/en/latest/intro.html) and its my first try of building a Search Engine.
+This Search Engine for a [UFO Sightings Dataset](https://github.com/timothyrenner/nuforc_sightings_data) is based on [Python Whoosh](https://whoosh.readthedocs.io/en/latest/intro.html) and its my first try of building a Search Engine.
 
 The results are rendered in a React.js Frontend with the help of [react-leaflet](https://www.openstreetmap.org/) using [OSM](https://www.openstreetmap.org/).
 
@@ -14,8 +14,8 @@ The results are rendered in a React.js Frontend with the help of [react-leaflet]
 
 *This explanation assumes that you're using a unix system.*
 
+1. Clone the repository
 1. First run the backend:
-    - Clone the repository
     - Open a Terminal
     - `cd <cloned-folder>`
     - `python3 -m venv env`
@@ -36,8 +36,10 @@ The results are rendered in a React.js Frontend with the help of [react-leaflet]
 1. Open a browser on http://localhost:3000
 
 
-
-
+## Todos
+* Geotag non-us sighting data (!!)
+* Use a faster library for building the search engine
+* make everything prettier and faster 
 
 
 

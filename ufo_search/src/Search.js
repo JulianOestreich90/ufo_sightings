@@ -46,7 +46,7 @@ class SearchData extends React.Component {
                                     key={index}
                                     data={sighting}
                                     onClick={this.fetchSightingDetails}
-                                    />
+                                />
                             )
                         })}
                         </tbody>

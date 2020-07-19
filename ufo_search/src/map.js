@@ -5,7 +5,6 @@ import './styles.css';
 import PointLayer from './PointLayer'
 
 
-
 class UfoMap extends React.Component {
     render() {
         return (
@@ -15,7 +14,10 @@ class UfoMap extends React.Component {
                         attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                    {this.props.data.hasOwnProperty('sightings') ? <PointLayer sightings={this.props.data.sightings} openPopupID={this.props.openPopupID} /> : <br/>}
+                    {this.props.data.hasOwnProperty('sightings') ?
+                        <PointLayer sightings={this.props.data.sightings}
+                                    openPopupID={this.props.openPopupID}
+                        /> : <br/>}
                 </Map>
             </div>
         )

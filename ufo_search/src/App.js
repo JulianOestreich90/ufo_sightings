@@ -16,9 +16,9 @@ class App extends React.Component {
         this.openPopup = this.openPopup.bind(this);
     };
 
-    searchData = (query, offset = 0, limit = 100) => {
+    searchData = (query, offset = 0, limit = 200) => {
 
-        axios.get('http://127.0.0.1:5000/api/v1/ufo/search', {
+        axios.get('http://192.168.0.183:5000/api/v1/ufo/search', {
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "*/*"
