@@ -9,13 +9,14 @@ The results are rendered in a React.js Frontend with the help of [react-leaflet]
 ## Requirements
 * Python 3.7
 * node/npm
+* Get a [NUFORC Sightings Dataset](https://github.com/timothyrenner/nuforc_sightings_data) by using this amazing repository by timothyrenner and place it in the root of this repository
 
 ## Test it
 
 *This explanation assumes that you're using a unix system.*
 
 1. Clone the repository
-1. First run the backend:
+1. Run the backend:
     - Open a Terminal
     - `cd <cloned-folder>`
     - `python3 -m venv env`
@@ -23,7 +24,7 @@ The results are rendered in a React.js Frontend with the help of [react-leaflet]
     - `pip install -r requirements.txt`
     - `python app.py`
 
-1. Then run the frontend:
+1. Run the frontend:
     - Open another shell
     - `cd <cloned-folder>/ufo_search`
     - `npm install`
